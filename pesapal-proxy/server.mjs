@@ -19,7 +19,8 @@ const consumerSecret = process.env.PESAPAL_CONSUMER_SECRET;
 const callbackUrl = process.env.PESAPAL_CALLBACK_URL;
 
 const allowedOrigins = [
-  "https://pesapal-b8cb7ksf7-duncans-projects-76f73f7b.vercel.app/",
+  "http://localhost:5173",
+  "https://pesapal-b8cb7ksf7-duncans-projects-76f73f7b.vercel.app",
   callbackUrl,
 ];
 
@@ -41,8 +42,8 @@ async function getAccessToken() {
     consumer_secret: consumerSecret,
   });
 
-  // console.log("Consumer Key:", consumerKey);
-  // console.log("Consumer Secret:", consumerSecret);
+  console.log("Consumer Key:", consumerKey);
+  console.log("Consumer Secret:", consumerSecret);
 
   const headers = {
     "content-Type": "application/json",
@@ -52,7 +53,7 @@ async function getAccessToken() {
   try {
     const response = await axios.post(authUrl, payload, { headers });
     BEARER_TOKEN = response.data.token;
-    // console.log("Access Token fetched successfully:", BEARER_TOKEN);
+    console.log("Access Token fetched successfully:", BEARER_TOKEN);
     return BEARER_TOKEN;
   } catch (error) {
     console.error(
@@ -89,7 +90,7 @@ async function getIPN_id() {
   }
 
   const IPN_id = ipnResponse.data.ipn_id;
-  // console.log("IPN registered successfully with ID:", IPN_id);
+  console.log("IPN registered successfully with ID:", IPN_id);
 
   return IPN_id;
 }
@@ -143,7 +144,7 @@ app.post("/api/payment", async (req, res) => {
       );
     }
 
-    // console.log("Redirect URL:", paymentResponse.data);
+    console.log("Redirect URL:", paymentResponse.data);
     res.json({
       redirect_url: paymentResponse.data.redirect_url,
     });
