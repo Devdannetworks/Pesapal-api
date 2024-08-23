@@ -1,10 +1,6 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const PaymentSuccess = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const transactionReference = queryParams.get("transaction_reference");
-
   const { orderTrackingId } = useParams();
 
   return (
