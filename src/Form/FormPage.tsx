@@ -35,7 +35,7 @@ const RegisterForm = () => {
     try {
       // Send request to your backend to initiate payment
       const response = await axios.post(
-        "http://localhost:3000/api/payment",
+        "https://pesapal-b8cb7ksf7-duncans-projects-76f73f7b.vercel.app/api/payment",
         data
       );
 
