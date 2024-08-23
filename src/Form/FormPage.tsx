@@ -8,6 +8,7 @@ import axios from "axios";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   const {
     register,
@@ -34,10 +35,7 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       // Send request to your backend to initiate payment
-      const response = await axios.post(
-        "https://pesapal-b8cb7ksf7-duncans-projects-76f73f7b.vercel.app/api/payment",
-        data
-      );
+      const response = await axios.post(`${API_URL}/api/payment`, data);
 
       // Redirect user to Pesapal payment page
       window.location.href = response.data.redirect_url;
