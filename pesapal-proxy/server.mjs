@@ -18,7 +18,7 @@ const consumerKey = process.env.PESAPAL_CONSUMER_KEY;
 const consumerSecret = process.env.PESAPAL_CONSUMER_SECRET;
 const callbackUrl = process.env.PESAPAL_CALLBACK_URL;
 
-const allowedOrigins = ["http://localhost:5173", callbackUrl];
+const allowedOrigins = ["https://pesapal-api-pi.vercel.app/", callbackUrl];
 
 app.use(
   cors({
