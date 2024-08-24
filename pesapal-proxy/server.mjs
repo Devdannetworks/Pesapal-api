@@ -8,11 +8,6 @@ dotenv.config();
 
 const app = express();
 
-//sample api keys to set in your .env file
-// PESAPAL_CALLBACK_URL=https://a405-105-160-68-129.ngrok-free.app/api/pesapal/callback
-// PESAPAL_CONSUMER_KEY=agbjviuujknidddiur98t8
-// PESAPAL_CONSUMER_SECRET=uhir85hnnkfnrg9uof=
-
 //yor api keys as sent to your  email by pesapal upon registration
 const consumerKey = process.env.PESAPAL_CONSUMER_KEY;
 const consumerSecret = process.env.PESAPAL_CONSUMER_SECRET;
@@ -20,19 +15,13 @@ const callbackUrl = process.env.PESAPAL_CALLBACK_URL;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://pesapal-b8cb7ksf7-duncans-projects-76f73f7b.vercel.app",
-  callbackUrl,
+  "https://pesapal-api-pi.vercel.app/",
+  // callbackUrl,
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
